@@ -26,8 +26,16 @@ EmailsInput.prototype._addInput = function() {
     this.node.appendChild(input);
 
     input.onblur = function () {
-        that._currentEmail = this.value;
-        that._addEmail();
+        if (input.value.indexOf(',') === -1) {
+            that._currentEmail = input.value;
+            that._addEmail();
+        } else {
+            var buffer = input.value;
+            buffer.split(',').forEach(function(curEl) {
+                that._currentEmail = curEl.trim();
+                that._addEmail();
+            })
+        }
         
     }
     this.input = input;
@@ -41,7 +49,6 @@ EmailsInput.prototype._showInput = function() {
     input.onkeypress = function(event) {
         if (event.which === 44 || event.keyCode === 32 || event.keyCode === 13) {
             event.preventDefault();
-            
             if (input.value.indexOf(',') === -1) {
                 that._currentEmail = input.value;
                 that._addEmail();
@@ -56,7 +63,6 @@ EmailsInput.prototype._showInput = function() {
             
         }
     }
-    
 }
 
 EmailsInput.prototype._addEmail = function() {
