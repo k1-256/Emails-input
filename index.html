@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emails input</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="emails-input/emails-input.css">
+    <script src="emails-input/emails-input.js"></script>
+</head>
+
+<body>
+    <div class="form form_first">
+        <div class="form__header">
+            <div class="form__header-name">
+                <span>Share <b>Board name</b> with others</span>
+            </div>
+            
+            <div id="emails-input"></div>
+        </div>
+        <div class="form__footer">
+            <button id="add" onclick="emailsInput.randomEmail()">Add email</button>
+            <button id="get" onclick="emailsInput.getEmailsCount()">Get emails count</button>
+        </div>
+
+        <script>
+            var inputContainerNode = document.querySelector('#emails-input');
+            var emailsInput = new EmailsInput(inputContainerNode);
+            
+            emailsInput.onChange(function(e){
+                console.log('changeEmail');
+            })
+        </script>
+    </div>
+</body>
+
+</html>
