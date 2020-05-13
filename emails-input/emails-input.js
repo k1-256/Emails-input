@@ -135,11 +135,12 @@ EmailsInput.prototype.getAllEmails = function() {
 EmailsInput.prototype.replaceEmails = function(emails) {
     var that = this;
     var elements = emailsInput.node.querySelectorAll('.comp_block-mail');
-    if (elements.length === 0) return;
-    for(var i=0; i<elements.length; i++) {
-        elements[i].parentNode.removeChild(elements[i]);
+    if (elements.length) {
+        for(var i=0; i<elements.length; i++) {
+            elements[i].parentNode.removeChild(elements[i]);
+        }
     }
-
+    
     emails.split(',').forEach(function(curEl) {
         that._currentEmail = curEl.trim();
         that._addEmail();
